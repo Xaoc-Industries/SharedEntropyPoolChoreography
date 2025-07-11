@@ -80,12 +80,12 @@ python3 SEPC.py \
 Example:
 ```json
 {
-       			  "PoolID": "0",
-			"TTL": 1752213416,
-			"GeneratedAt": 1752212816,
-			"EnSrc": "V1",
-			"SHA256": "21eb60c...",
-			"Data": "/QiQ6N}eWGb}Em;,BH_u6?vv=c'08%c/rQh'yK746'w.AiWqp%Y`hjoK'`bO..."
+    "PoolID": "0",
+    "TTL": 1752213416,
+    "GeneratedAt": 1752212816,
+    "EnSrc": "V1",
+    "SHA256": "21eb60c...",
+    "Data": "/QiQ6N}eWGb}Em;,BH_u6?vv=c'08%c/rQh'yK746'w.AiWqp%Y`hjoK'`bO..."
 }
 ```
 
