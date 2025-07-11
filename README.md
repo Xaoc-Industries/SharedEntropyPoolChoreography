@@ -24,6 +24,7 @@
 ```bash
 SEPC/
 ├── SEPC.py              # Main encoder/decoder tool
+├── PoolGen.py           # Entropy pool generator tool
 ├── LICENSE              # Licensing terms (non-commercial only)
 ├── README.md            # This file
 ├── docs/
