@@ -23,12 +23,15 @@
 
 ```bash
 SEPC/
-├── SEPC.py              # Main encoder/decoder tool
-├── PoolGen.py           # Entropy pool generator tool
+├── sepc.py              # Main encoder/decoder tool
+├── sepc-vault.py        # Entropy pool vault API
 ├── LICENSE              # Licensing terms (non-commercial only)
 ├── README.md            # This file
+├── binaries/
+│   └── sepc             # Encoder/decoder tool Linux binary
+│   └── sepc.exe         # Encoder/decoder tool Windows executable
 ├── docs/
-│   └── HekateForge_Shared_Entropy_Pool_Choreography(SEPC).pdf
+│   └── Shared Entropy Pool Choreography Version 1_1.pdf  # SEPC Version 1.1 Whitepaper
 ├── examples/
 │   ├── CypferCoKey.PLD
 │   └── entropy_pool_example.json
@@ -42,7 +45,7 @@ SEPC/
 2. Map each Base64 byte to index positions within a shared entropy pool.
 3. Encode those indexes into a variable-length string.
 4. Chunk the string and XOR each segment:
-   - First key = `sum(LIC bytes) * SEED`
+   - Key1 = `sum(LIC bytes) * SEED`
    - Subsequent keys = `sum(previous segment bytes) * (n * segment length)`
 5. Compress the XORed data into a `PLD`.
 6. The receiver uses the same entropy pool + LIC + seed to reverse the process and decrypt the message.
@@ -55,7 +58,7 @@ SEPC/
 ```bash
 python3 SEPC.py \
   -s examples/sample_secret.txt \
-  -p http://localhost/entropy_pool.json \
+  -p http://hekateforge.com:8080/pool \
   -l my_license_value \
   -sl 6 \
   -sv 42 \
@@ -66,7 +69,7 @@ python3 SEPC.py \
 ```bash
 python3 SEPC.py \
   -d output.pld \
-  -p http://localhost/entropy_pool.json \
+  -p http://hekateforge.com:8080/pool/{PoolIDHash} \
   -l my_license_value \
   -sl 6 \
   -sv 42 \
@@ -83,7 +86,7 @@ Example:
     "PoolID": "0",
     "TTL": 1752213416,
     "GeneratedAt": 1752212816,
-    "EnSrc": "V1",
+    "EnSrc": "V1.1",
     "SHA256": "21eb60c...",
     "Data": "/QiQ6N}eWGb}Em;,BH_u6?vv=c'08%c/rQh'yK746'w.AiWqp%Y`hjoK'`bO..."
 }
